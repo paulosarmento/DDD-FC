@@ -1,3 +1,12 @@
+// Complexidade de negocio
+// Domain
+// - Entity
+//   - - customer.ts (regra de negocio)
+
+// Complexidade acidental
+// infra - Mundo externo
+// - Entity / Model
+//   - - customer.ts (get, set)
 class Customer {
   _id: string;
   _name: string = "";
