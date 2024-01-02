@@ -9,7 +9,7 @@
 
 import Address from "./address";
 
-class Customer {
+export default class Customer {
   _id: string;
   _name: string = "";
   _address!: Address;
@@ -33,7 +33,7 @@ class Customer {
     this._name = name;
     this.validate();
   }
-  active() {
+  activate() {
     if (this._address === undefined) {
       throw new Error("Address is mandatory to activate a customer");
     }
