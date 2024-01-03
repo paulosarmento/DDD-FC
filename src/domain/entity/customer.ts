@@ -33,6 +33,10 @@ export default class Customer {
     return this._id;
   }
 
+  get address(): Address {
+    return this._address;
+  }
+
   validate() {
     if (this._id.length === 0) {
       throw new Error("Id is required");
@@ -44,6 +48,9 @@ export default class Customer {
   changeName(name: string) {
     this._name = name;
     this.validate();
+  }
+  changeAddress(address: Address) {
+    return (this._address = address);
   }
   isActive(): boolean {
     return this._active;

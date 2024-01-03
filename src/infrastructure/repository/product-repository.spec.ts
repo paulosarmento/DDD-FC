@@ -79,7 +79,7 @@ describe("Product repository test", () => {
       price: foundProduct.price,
     });
   });
-  it("Should find a product", async () => {
+  it("Should find all products", async () => {
     const productRepository = new ProductRepository();
     const product = new Product("1", "Product 1", 100);
     const product2 = new Product("2", "Product 2", 200);
