@@ -12,12 +12,15 @@ export default class Product {
   get name(): string {
     return this._name;
   }
+  get price(): number {
+    return this._price;
+  }
+  get id(): string {
+    return this._id;
+  }
   changeName(name: string): void {
     this._name = name;
     this.validate();
-  }
-  get price(): number {
-    return this._price;
   }
 
   changePrice(price: number): void {
