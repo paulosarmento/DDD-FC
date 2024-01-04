@@ -1,3 +1,6 @@
+import EventDispatcher from "./event-despatcher.spec";
+import SendEmailWhenProductIsCreatedHandler from "./product/handler/send-email-when-product-is-created.handler";
+
 describe("Domain events tests", () => {
   it("Should register an event handler", () => {
     const eventDispatcher = new EventDispatcher();
