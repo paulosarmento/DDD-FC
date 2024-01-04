@@ -17,18 +17,23 @@ export default class EventDispatcher implements EventDispatcherInterface {
     }
     this.eventHandlers[eventName].push(eventHandler);
   }
+  unregister(
+    eventName: string,
+    eventHandler: EventHandlerInterface<EventInterface>
+  ): void {
+    if (this.eventHandlers[eventName]) {
+      const index = this.eventHandlers[eventName].indexOf(eventHandler);
+      if (index !== -1) {
+        this.eventHandlers[eventName].splice(index, 1);
+      }
+    }
+  }
 
   notify(event: EventInterface): void {
     throw new Error("Method not implemented.");
   }
 
-  unregister(
-    eventName: string,
-    eventHandler: EventHandlerInterface<EventInterface>
-  ): void {
-    throw new Error("Method not implemented.");
-  }
   unregisterAll(): void {
-    throw new Error("Method not implemented.");
+    this.eventHandlers = {};
   }
 }
