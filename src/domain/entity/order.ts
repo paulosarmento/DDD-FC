@@ -22,6 +22,9 @@ export default class Order {
   get items(): OrderItem[] {
     return this._items;
   }
+  changeCustomerId(customerId: string) {
+    this._customerId = customerId;
+  }
 
   validate() {
     if (this._id.length === 0) {
