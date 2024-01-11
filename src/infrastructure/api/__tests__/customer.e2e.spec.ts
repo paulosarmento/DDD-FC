@@ -5,6 +5,7 @@ describe("E2E test for customer", () => {
   beforeEach(async () => {
     await sequelize.sync({ force: true });
   });
+
   afterAll(async () => {
     await sequelize.close();
   });
@@ -64,11 +65,11 @@ describe("E2E test for customer", () => {
     const listResponse = await request(app).get("/customer").send();
 
     expect(listResponse.status).toBe(200);
-    expect(listResponse.body.length).toBe(2);
-    const customer = listResponse.body.customer[0];
+    expect(listResponse.body.customers.length).toBe(2);
+    const customer = listResponse.body.customers[0];
     expect(customer.name).toBe("John");
     expect(customer.address.street).toBe("Street");
-    const customer2 = listResponse.body.customer[1];
+    const customer2 = listResponse.body.customers[1];
     expect(customer2.name).toBe("Jane");
     expect(customer2.address.street).toBe("Street 2");
   });
