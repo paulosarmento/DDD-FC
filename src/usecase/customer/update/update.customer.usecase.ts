@@ -4,15 +4,15 @@ import { OutputCreateCustomerDto } from "../create/create.customer.dto";
 import { InputUpdateCustomerDto } from "./update.customer.dto";
 
 export default class UpdateCustomerUseCase {
-  private CustomerRepository: CustomerRepositoryInterface;
+  private customerRepository: CustomerRepositoryInterface;
   constructor(CustomerRepository: CustomerRepositoryInterface) {
-    this.CustomerRepository = CustomerRepository;
+    this.customerRepository = CustomerRepository;
   }
 
   async execute(
     input: InputUpdateCustomerDto
   ): Promise<OutputCreateCustomerDto> {
-    const customer = await this.CustomerRepository.find(input.id);
+    const customer = await this.customerRepository.find(input.id);
     customer.changeName(input.name);
     customer.changeAddress(
       new Address(
@@ -22,7 +22,7 @@ export default class UpdateCustomerUseCase {
         input.address.city
       )
     );
-    await this.CustomerRepository.update(customer);
+    await this.customerRepository.update(customer);
     return {
       id: customer.id,
       name: customer.name,
