@@ -1,5 +1,5 @@
-import Entity from "../../entity/entity.abstract";
-import NotificationError from "../../notification/notification.error";
+import Entity from "../../@shared/entity/entity.abstract";
+import NotificationError from "../../@shared/notification/notification.error";
 import Address from "../value-object/address";
 
 export default class Customer extends Entity {
