@@ -29,6 +29,20 @@ describe("Unit tests for notification", () => {
     expect(notification.messages()).toBe(
       "customer: Error message,customer: Error message 2,order: Error message 3,"
     );
+    const error4 = {
+      message: "Error message 4",
+      context: "product",
+    };
+    notification.addError(error4);
+    expect(notification.messages("product")).toBe("product: Error message 4,");
+    const error5 = {
+      message: "Error message 5",
+      context: "product",
+    };
+    notification.addError(error5);
+    expect(notification.messages("product")).toBe(
+      "product: Error message 4,product: Error message 5,"
+    );
   });
 
   it("Should check if notification has at least one error", () => {
@@ -46,7 +60,7 @@ describe("Unit tests for notification", () => {
     const notification = new Notification();
     const error = {
       message: "Error message",
-      context: "customer",
+      context: "product",
     };
     notification.addError(error);
     expect(notification.getErros()).toEqual([error]);
