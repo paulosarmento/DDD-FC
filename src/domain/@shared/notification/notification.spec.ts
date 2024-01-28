@@ -65,4 +65,42 @@ describe("Unit tests for notification", () => {
     notification.addError(error);
     expect(notification.getErros()).toEqual([error]);
   });
+  it("Should accumulate errors for a product with blank name and price", () => {
+    const notification = new Notification();
+
+    // Adicionando um erro para um produto com nome em branco
+    const error1 = {
+      message: "Product name cannot be blank",
+      context: "product",
+    };
+    notification.addError(error1);
+    expect(notification.messages("product")).toBe(
+      "product: Product name cannot be blank,"
+    );
+
+    // Adicionando outro erro para o mesmo produto com preço em branco
+    const error2 = {
+      message: "Product price cannot be blank",
+      context: "product",
+    };
+    notification.addError(error2);
+    expect(notification.messages("product")).toBe(
+      "product: Product name cannot be blank,product: Product price cannot be blank,"
+    );
+
+    // Adicionando um erro para um contexto diferente
+    const error3 = {
+      message: "Error message for order",
+      context: "order",
+    };
+    notification.addError(error3);
+    expect(notification.messages("product")).toBe(
+      "product: Product name cannot be blank,product: Product price cannot be blank,"
+    );
+
+    // Verificando os erros gerais acumulados
+    expect(notification.messages()).toBe(
+      "product: Product name cannot be blank,product: Product price cannot be blank,order: Error message for order,"
+    );
+  });
 });
